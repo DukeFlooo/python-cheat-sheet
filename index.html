@@ -1,80 +1,226 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Cheat Sheet - Input/Output</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1e1e2e;
-            color: #cdd6f4;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-        }
-        h1 { color: #89b4fa; text-align: center; border-bottom: 2px solid #89b4fa; padding-bottom: 10px; }
-        .card {
-            background-color: #313244;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-        }
-        h2 { color: #a6e3a1; margin-top: 0; }
-        code {
-            background-color: #181825;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #f38ba8;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        .code-block {
-            background-color: #181825;
-            padding: 15px;
-            border-left: 4px solid #f9e2af;
-            display: block;
-            margin: 10px 0;
-            color: #f9e2af;
-            white-space: pre-wrap;
-        }
-        .label { font-weight: bold; color: #94e2d5; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Einstieg – 10. Klasse</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background: #f7f9fc;
+      color: #1f2937;
+    }
+    header {
+      background: #1d4ed8;
+      color: white;
+      padding: 2rem 1.2rem;
+      text-align: center;
+    }
+    main {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    section {
+      background: white;
+      margin-bottom: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    .info {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 0.9rem;
+      border-radius: 8px;
+    }
+    .code {
+      background: #111827;
+      color: #f9fafb;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      white-space: pre-wrap;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 0.7rem 0 1rem 0;
+      border: 1px solid #d1d5db;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.8rem;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 0.7rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #e5e7eb;
+    }
+    .exercise {
+      background: #fefce8;
+      border-left: 5px solid #eab308;
+      padding: 0.9rem;
+      border-radius: 8px;
+      margin-top: 0.8rem;
+    }
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.95rem;
+      padding: 1rem 0 2rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🐍 Python I/O Cheat Sheet</h1>
+  <header>
+    <h1>Python-Einstieg mit Thonny</h1>
+    <p>Cheat Sheet für die 10. Klasse</p>
+  </header>
 
-        <div class="card">
-            <h2>📤 Ausgabe (Output)</h2>
-            <p>Um Text oder Variablen anzuzeigen, nutzt du <code>print()</code>.</p>
-            <span class="label">Einfacher Text:</span>
-            <code class="code-block">print("Hallo Welt!")</code>
-            
-            <span class="label">Mehrere Elemente:</span>
-            <code class="code-block">name = "Erik"
-print("Hallo", name, "wie geht's?")</code>
-        </div>
+  <main>
+    <section>
+      <h2>Was machen wir heute?</h2>
+      <p>In der ersten Stunde lernst du die Programmierumgebung <strong>Thonny</strong> kennen. Danach schreibst du dein erstes Python-Programm und speicherst Werte in <strong>Variablen</strong>.</p>
+      <div class="info">
+        <strong>Lernziele:</strong>
+        <ul>
+          <li>Thonny öffnen und wichtige Bereiche erkennen</li>
+          <li>Ein erstes Python-Programm mit <code>print()</code> schreiben</li>
+          <li>Verstehen, was eine Variable ist</li>
+          <li>Einfache Werte speichern und ausgeben</li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="card">
-            <h2>📥 Eingabe (Input)</h2>
-            <p>Um Daten vom Nutzer zu erhalten, nutzt du <code>input()</code>. </p>
-            <p><i>Wichtig:</i> Input speichert alles immer als <b>Text (String)</b>!</p>
-            <span class="label">Daten abfragen:</span>
-            <code class="code-block">user_name = input("Gib deinen Namen ein: ")
-print("Willkommen", user_name)</code>
-        </div>
+    <section>
+      <h2>1. Die Thonny-IDE</h2>
+      <p>Eine IDE ist eine Programmierumgebung. In Thonny schreibst du deinen Code, speicherst Dateien und führst Programme aus.</p>
 
-        <div class="card" style="border: 1px dashed #f9e2af;">
-            <h2>💡 Profi-Tipp: f-Strings</h2>
-            <p>Die modernste Art, Variablen in Text zu packen:</p>
-            <code class="code-block">alter = 16
-print(f"Du bist {alter} Jahre alt.")</code>
-        </div>
-    </div>
+      <h3>Aufbau von Thonny</h3>
+      <img src="./images/thonny-ide-erklaerung.png" alt="Erklärung der Thonny IDE" />
+
+      <h3>Input und Output in Thonny</h3>
+      <img src="./images/thonny-ide-input-output.png" alt="Input und Output in Thonny" />
+
+      <div class="info">
+        <strong>Wichtig:</strong>
+        <ul>
+          <li><strong>Editor:</strong> Hier schreibst du den Python-Code.</li>
+          <li><strong>Shell:</strong> Hier erscheinen Ausgaben und Fehlermeldungen.</li>
+          <li><strong>Run:</strong> Damit startest du dein Programm.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Dein erstes Programm</h2>
+      <p>Mit <code>print()</code> kann Python einen Text ausgeben.</p>
+      <div class="code">print("Hello World!")</div>
+      <p>Die Ausgabe in der Shell lautet:</p>
+      <div class="code">Hello World!</div>
+
+      <div class="exercise">
+        <strong>Mini-Aufgabe:</strong> Ändere den Text so, dass dein Name ausgegeben wird.
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Variablen</h2>
+      <p>Eine Variable ist wie eine beschriftete Box. In dieser Box kann ein Wert gespeichert werden.</p>
+
+      <div class="code">name = "Lena"
+print(name)</div>
+
+      <p>Hier wird der Text <code>"Lena"</code> in der Variablen <code>name</code> gespeichert. Danach wird der Inhalt ausgegeben.</p>
+
+      <h3>Noch ein Beispiel</h3>
+      <div class="code">alter = 15
+print(alter)</div>
+
+      <p>Variablen können also unterschiedliche Werte speichern, zum Beispiel Texte oder Zahlen.</p>
+    </section>
+
+    <section>
+      <h2>4. Mehrere Variablen zusammen benutzen</h2>
+      <div class="code">name = "Tom"
+alter = 16
+print("Ich heiße", name)
+print("Ich bin", alter, "Jahre alt.")</div>
+
+      <p>Python kann Texte und Variablen zusammen ausgeben.</p>
+
+      <div class="exercise">
+        <strong>Mini-Aufgabe:</strong> Ersetze <code>Tom</code> und <code>16</code> durch deine eigenen Daten.
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Merkhilfe</h2>
+      <table>
+        <tr>
+          <th>Begriff</th>
+          <th>Bedeutung</th>
+          <th>Beispiel</th>
+        </tr>
+        <tr>
+          <td><code>print()</code></td>
+          <td>Gibt etwas in der Shell aus</td>
+          <td><code>print("Hallo")</code></td>
+        </tr>
+        <tr>
+          <td>Variable</td>
+          <td>Speichert einen Wert</td>
+          <td><code>name = "Mia"</code></td>
+        </tr>
+        <tr>
+          <td>Text / String</td>
+          <td>Steht in Anführungszeichen</td>
+          <td><code>"Hallo"</code></td>
+        </tr>
+        <tr>
+          <td>Zahl</td>
+          <td>Wird ohne Anführungszeichen geschrieben</td>
+          <td><code>15</code></td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>6. Kleine Übungsaufgaben</h2>
+      <ol>
+        <li>Gib mit <code>print()</code> den Text <code>"Python ist interessant"</code> aus.</li>
+        <li>Speichere deinen Namen in einer Variablen und gib ihn aus.</li>
+        <li>Speichere dein Alter in einer Variablen und gib es aus.</li>
+        <li>Erstelle zwei Variablen: <code>fach</code> und <code>note</code>. Gib beide aus.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>7. Das solltest du nach der Stunde können</h2>
+      <ul>
+        <li>Thonny bedienen</li>
+        <li>Ein Python-Programm starten</li>
+        <li><code>print()</code> benutzen</li>
+        <li>Einfache Variablen anlegen und ausgeben</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Python-Einstieg – 10. Klasse
+  </footer>
 </body>
 </html>
