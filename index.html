@@ -3,224 +3,479 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Einstieg – 10. Klasse</title>
+  <title>Python Cheat Sheet – Klasse 10</title>
   <style>
+    :root {
+      --bg-1: #08111f;
+      --bg-2: #0f1f3a;
+      --bg-3: #16345f;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.12);
+      --text: #e8f0ff;
+      --muted: #b7c7e6;
+      --accent: #7cc4ff;
+      --accent-2: #b7e3ff;
+      --line: rgba(255,255,255,0.14);
+      --code-bg: #06101d;
+      --ok: #d8ecff;
+      --shadow: 0 18px 40px rgba(0,0,0,0.28);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
       margin: 0;
-      background: #f7f9fc;
-      color: #1f2937;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(124, 196, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(95, 146, 255, 0.18), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 48%, var(--bg-3));
+      min-height: 100vh;
     }
-    header {
-      background: #1d4ed8;
-      color: white;
-      padding: 2rem 1.2rem;
-      text-align: center;
-    }
-    main {
-      max-width: 950px;
+
+    .wrapper {
+      width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 28px 0 42px;
     }
-    section {
-      background: white;
-      margin-bottom: 1.5rem;
-      padding: 1.2rem;
-      border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+
+    .hero {
+      padding: 40px 34px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      margin-bottom: 22px;
     }
-    h1, h2, h3 {
-      margin-top: 0;
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(124,196,255,0.14);
+      color: var(--accent-2);
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+      border: 1px solid rgba(124,196,255,0.22);
+      margin-bottom: 14px;
     }
-    .info {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      padding: 0.9rem;
-      border-radius: 8px;
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
     }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card,
+    .wide-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .wide-card {
+      padding: 28px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+    }
+
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 1.08rem;
+      color: var(--accent-2);
+    }
+
+    p, li {
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--accent-2);
+      font-size: 0.92rem;
+    }
+
     .code {
-      background: #111827;
-      color: #f9fafb;
-      padding: 1rem;
-      border-radius: 10px;
+      background: var(--code-bg);
+      color: var(--ok);
+      border: 1px solid rgba(124,196,255,0.15);
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.98rem;
       overflow-x: auto;
-      font-family: Consolas, monospace;
       white-space: pre-wrap;
+      margin: 14px 0;
     }
+
+    .hint,
+    .note {
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 14px 0 0;
+    }
+
+    .hint {
+      background: rgba(124,196,255,0.10);
+      border: 1px solid rgba(124,196,255,0.18);
+    }
+
+    .note {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .feature-list,
+    .mini-list {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .image-frame {
+      margin-top: 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+
     img {
-      max-width: 100%;
+      display: block;
+      width: 100%;
       height: auto;
-      border-radius: 10px;
-      margin: 0.7rem 0 1rem 0;
-      border: 1px solid #d1d5db;
     }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 0.8rem;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
     }
+
     th, td {
-      border: 1px solid #d1d5db;
-      padding: 0.7rem;
       text-align: left;
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
       vertical-align: top;
     }
+
     th {
-      background: #e5e7eb;
+      color: var(--accent-2);
+      background: rgba(255,255,255,0.05);
+      font-weight: 700;
     }
-    .exercise {
-      background: #fefce8;
-      border-left: 5px solid #eab308;
-      padding: 0.9rem;
-      border-radius: 8px;
-      margin-top: 0.8rem;
+
+    tr:last-child td {
+      border-bottom: none;
     }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      color: var(--accent-2);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
     footer {
       text-align: center;
-      color: #6b7280;
+      color: var(--muted);
+      padding: 10px 0 4px;
       font-size: 0.95rem;
-      padding: 1rem 0 2rem;
+    }
+
+    @media (max-width: 860px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 28px 22px;
+      }
+
+      .card,
+      .wide-card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Python-Einstieg mit Thonny</h1>
-    <p>Cheat Sheet für die 10. Klasse</p>
-  </header>
+  <div class="wrapper">
+    <header class="hero">
+      <div class="hero-badge">Python Cheat Sheet • Klasse 10</div>
+      <h1>Python einfach erklärt</h1>
+      <p>
+        Dieses Cheat Sheet ist zum Nachschlagen gedacht. Es kann jederzeit ergänzt werden und sammelt die wichtigsten Grundlagen zu Python in einer übersichtlichen Form.
+      </p>
+      <div class="tag-row">
+        <div class="tag">Thonny</div>
+        <div class="tag">print()</div>
+        <div class="tag">Variablen</div>
+        <div class="tag">Datentypen</div>
+      </div>
+    </header>
 
-  <main>
-    <section>
-      <h2>Was machen wir heute?</h2>
-      <p>In der ersten Stunde lernst du die Programmierumgebung <strong>Thonny</strong> kennen. Danach schreibst du dein erstes Python-Programm und speicherst Werte in <strong>Variablen</strong>.</p>
-      <div class="info">
-        <strong>Lernziele:</strong>
-        <ul>
-          <li>Thonny öffnen und wichtige Bereiche erkennen</li>
-          <li>Ein erstes Python-Programm mit <code>print()</code> schreiben</li>
-          <li>Verstehen, was eine Variable ist</li>
-          <li>Einfache Werte speichern und ausgeben</li>
+    <div class="grid">
+      <section class="card">
+        <div class="section-title">
+          <h2>Thonny</h2>
+          <span>Programmierumgebung</span>
+        </div>
+        <p class="muted">
+          In Thonny schreibt man Python-Code, speichert Programme und startet sie.
+        </p>
+        <ul class="feature-list">
+          <li><strong>Editor:</strong> Hier schreibt man den Code.</li>
+          <li><strong>Shell:</strong> Hier sieht man die Ausgabe und Fehlermeldungen.</li>
+          <li><strong>Run:</strong> Damit wird das Programm ausgeführt.</li>
         </ul>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>Wichtig am Anfang</h2>
+          <span>Merkhilfen</span>
+        </div>
+        <ul class="feature-list">
+          <li>Python achtet genau auf die Schreibweise.</li>
+          <li>Klammern und Anführungszeichen müssen stimmen.</li>
+          <li>Fehlt ein Zeichen, gibt es oft eine Fehlermeldung.</li>
+          <li>Programme darf man ausprobieren und schrittweise verändern.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="wide-card">
+      <div class="section-title">
+        <h2>Thonny im Überblick</h2>
+        <span>Bilder aus dem Repository</span>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Aufbau der Oberfläche</h3>
+          <p class="muted">
+            Das Bild zeigt die wichtigsten Bereiche von Thonny. Damit können Schülerinnen und Schüler die Oberfläche schneller einordnen.
+          </p>
+          <div class="image-frame">
+            <img src="./images/eins.png" alt="Erklärung der Thonny IDE" />
+          </div>
+        </div>
+        <div>
+          <h3>Input und Output</h3>
+          <p class="muted">
+            In der Shell erscheinen Ausgaben des Programms. Später sieht man dort auch Eingaben und Fehlermeldungen.
+          </p>
+          <div class="image-frame">
+            <img src="./images/zwei.png" alt="Input und Output in Thonny" />
+          </div>
+        </div>
+      </div>
+      <div class="hint">
+        <strong>Wichtig:</strong> Die Bilder funktionieren nur, wenn sie wirklich im Ordner <code>images</code> liegen und die Dateinamen genau <code>eins.png</code> und <code>zwei.png</code> heißen.
       </div>
     </section>
 
-    <section>
-      <h2>1. Die Thonny-IDE</h2>
-      <p>Eine IDE ist eine Programmierumgebung. In Thonny schreibst du deinen Code, speicherst Dateien und führst Programme aus.</p>
-
-      <h3>Aufbau von Thonny</h3>
-      <img src="./1.png" alt="Erklärung der Thonny IDE" />
-
-      <h3>Input und Output in Thonny</h3>
-      <img src="./2.png" alt="Input und Output in Thonny" />
-
-      <div class="info">
-        <strong>Wichtig:</strong>
-        <ul>
-          <li><strong>Editor:</strong> Hier schreibst du den Python-Code.</li>
-          <li><strong>Shell:</strong> Hier erscheinen Ausgaben und Fehlermeldungen.</li>
-          <li><strong>Run:</strong> Damit startest du dein Programm.</li>
-        </ul>
+    <section class="wide-card">
+      <div class="section-title">
+        <h2>Ausgabe mit <code>print()</code></h2>
+        <span>Erster Python-Befehl</span>
       </div>
-    </section>
-
-    <section>
-      <h2>2. Dein erstes Programm</h2>
-      <p>Mit <code>print()</code> kann Python einen Text ausgeben.</p>
+      <p>
+        Mit <code>print()</code> gibt Python etwas in der Shell aus. Das kann zum Beispiel ein Wort, ein Satz oder später auch der Inhalt einer Variable sein.
+      </p>
       <div class="code">print("Hello World!")</div>
-      <p>Die Ausgabe in der Shell lautet:</p>
-      <div class="code">Hello World!</div>
 
-      <div class="exercise">
-        <strong>Mini-Aufgabe:</strong> Ändere den Text so, dass dein Name ausgegeben wird.
+      <h3>Wie liest man das?</h3>
+      <ul class="feature-list">
+        <li><code>print</code> ist der Name des Befehls.</li>
+        <li>Die <strong>Klammern</strong> gehören dazu und müssen mitgeschrieben werden.</li>
+        <li>Der Text steht <strong>in Anführungszeichen</strong>, weil es ein Text ist.</li>
+      </ul>
+
+      <div class="note">
+        Man kann an dieser Stelle schon sagen: <code>print()</code> ist eine <strong>Funktion</strong>. Für den Anfang reicht aber die einfache Erklärung: Es ist ein Python-Befehl, mit dem man etwas ausgeben kann.
       </div>
+
+      <h3>Beispiele</h3>
+      <div class="code">print("Hallo")
+print("Ich lerne Python")
+print("Mein Name ist Mia")</div>
     </section>
 
-    <section>
-      <h2>3. Variablen</h2>
-      <p>Eine Variable ist wie eine beschriftete Box. In dieser Box kann ein Wert gespeichert werden.</p>
-
+    <section class="wide-card">
+      <div class="section-title">
+        <h2>Variablen</h2>
+        <span>Werte speichern</span>
+      </div>
+      <p>
+        Eine Variable ist ein Name für einen gespeicherten Wert. Man kann sich eine Variable wie eine beschriftete Box vorstellen.
+      </p>
       <div class="code">name = "Lena"
 print(name)</div>
-
-      <p>Hier wird der Text <code>"Lena"</code> in der Variablen <code>name</code> gespeichert. Danach wird der Inhalt ausgegeben.</p>
+      <p class="muted">
+        Hier wird der Text <code>"Lena"</code> in der Variablen <code>name</code> gespeichert. Danach wird der Inhalt ausgegeben.
+      </p>
 
       <h3>Noch ein Beispiel</h3>
       <div class="code">alter = 15
 print(alter)</div>
 
-      <p>Variablen können also unterschiedliche Werte speichern, zum Beispiel Texte oder Zahlen.</p>
-    </section>
-
-    <section>
-      <h2>4. Mehrere Variablen zusammen benutzen</h2>
-      <div class="code">name = "Tom"
-alter = 16
-print("Ich heiße", name)
-print("Ich bin", alter, "Jahre alt.")</div>
-
-      <p>Python kann Texte und Variablen zusammen ausgeben.</p>
-
-      <div class="exercise">
-        <strong>Mini-Aufgabe:</strong> Ersetze <code>Tom</code> und <code>16</code> durch deine eigenen Daten.
+      <div class="hint">
+        In Python muss man Variablen am Anfang <strong>nicht extra deklarieren</strong>. Man weist ihnen einfach einen Wert zu.
       </div>
     </section>
 
-    <section>
-      <h2>5. Merkhilfe</h2>
+    <section class="wide-card">
+      <div class="section-title">
+        <h2>Datentypen am Anfang</h2>
+        <span>Einfach angerissen</span>
+      </div>
+      <p>
+        Variablen können unterschiedliche Arten von Werten speichern. Für den Einstieg reichen diese drei Arten.
+      </p>
+
       <table>
         <tr>
-          <th>Begriff</th>
-          <th>Bedeutung</th>
+          <th>Art des Werts</th>
+          <th>Woran erkennt man ihn?</th>
           <th>Beispiel</th>
+          <th>Wichtig zu beachten</th>
         </tr>
         <tr>
-          <td><code>print()</code></td>
-          <td>Gibt etwas in der Shell aus</td>
-          <td><code>print("Hallo")</code></td>
-        </tr>
-        <tr>
-          <td>Variable</td>
-          <td>Speichert einen Wert</td>
-          <td><code>name = "Mia"</code></td>
-        </tr>
-        <tr>
-          <td>Text / String</td>
-          <td>Steht in Anführungszeichen</td>
+          <td><strong>String</strong><br>Text</td>
+          <td>steht in Anführungszeichen</td>
           <td><code>"Hallo"</code></td>
+          <td>Ohne Anführungszeichen ist es kein Text.</td>
         </tr>
         <tr>
-          <td>Zahl</td>
-          <td>Wird ohne Anführungszeichen geschrieben</td>
+          <td><strong>Integer</strong><br>ganze Zahl</td>
+          <td>ohne Anführungszeichen</td>
           <td><code>15</code></td>
+          <td>Keine Nachkommastellen.</td>
+        </tr>
+        <tr>
+          <td><strong>Float</strong><br>Kommazahl</td>
+          <td>mit Punkt statt Komma</td>
+          <td><code>3.5</code></td>
+          <td>In Python schreibt man <strong>3.5</strong> und nicht <strong>3,5</strong>.</td>
         </tr>
       </table>
+
+      <h3>Beispiele für Variablen mit verschiedenen Datentypen</h3>
+      <div class="code">name = "Tom"
+alter = 16
+note = 2.5
+
+print(name)
+print(alter)
+print(note)</div>
     </section>
 
-    <section>
-      <h2>6. Kleine Übungsaufgaben</h2>
-      <ol>
-        <li>Gib mit <code>print()</code> den Text <code>"Python ist interessant"</code> aus.</li>
-        <li>Speichere deinen Namen in einer Variablen und gib ihn aus.</li>
-        <li>Speichere dein Alter in einer Variablen und gib es aus.</li>
-        <li>Erstelle zwei Variablen: <code>fach</code> und <code>note</code>. Gib beide aus.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>7. Das solltest du nach der Stunde können</h2>
-      <ul>
-        <li>Thonny bedienen</li>
-        <li>Ein Python-Programm starten</li>
-        <li><code>print()</code> benutzen</li>
-        <li>Einfache Variablen anlegen und ausgeben</li>
+    <section class="wide-card">
+      <div class="section-title">
+        <h2>Typische Anfängerfehler</h2>
+        <span>Darauf sollte man achten</span>
+      </div>
+      <ul class="feature-list">
+        <li><strong>Text ohne Anführungszeichen:</strong> <code>print(Hallo)</code> ist falsch.</li>
+        <li><strong>Fehlende Klammer:</strong> <code>print("Hallo"</code> ist falsch.</li>
+        <li><strong>Kommazahl mit Komma:</strong> <code>3,5</code> ist nicht dasselbe wie <code>3.5</code>.</li>
+        <li><strong>Groß- und Kleinschreibung:</strong> <code>Print()</code> ist nicht dasselbe wie <code>print()</code>.</li>
       </ul>
     </section>
-  </main>
 
-  <footer>
-    Python-Einstieg – 10. Klasse
-  </footer>
+    <section class="wide-card">
+      <div class="section-title">
+        <h2>Kurzbeispiele zum Nachschlagen</h2>
+        <span>Schneller Überblick</span>
+      </div>
+      <div class="code">print("Hello World!")
+
+fach = "Informatik"
+print(fach)
+
+punkte = 12
+print(punkte)
+
+temperatur = 21.5
+print(temperatur)</div>
+      <div class="note">
+        Dieses Cheat Sheet kann später leicht erweitert werden, zum Beispiel um <code>input()</code>, Rechnen mit Variablen, Bedingungen oder Schleifen.
+      </div>
+    </section>
+
+    <footer>
+      Python Cheat Sheet • zum Ergänzen und Wiederholen
+    </footer>
+  </div>
 </body>
 </html>
